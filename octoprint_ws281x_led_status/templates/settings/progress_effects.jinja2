@@ -4,15 +4,15 @@
 
 <h5>Progress effects {{ docs.help_icon("configuration/progress-effects") }}</h5>
 <form class="form-horizontal">
-    {{ labelled_checkbox("strip.reverse", "Reverse progress bar direction") }}
+    {{ effects.labelled_checkbox("strip.reverse", "Reverse progress bar direction") }}
     <hr>
-    {{ effect("progress_print") }}
+    {{ effects.effect("progress_print","Printing progress") }}
     <hr>
-    {{ effect("progress_heatup","Heating Progress") }}
+    {{ effects.effect("progress_heatup","Heating Progress") }}
     <br>
     <div class="form-inline" style="margin-bottom: 10px;" data-bind="visible: {{ binding.effect_binding("progress_heatup.enabled") }}">
-        {{ labelled_checkbox("effects.progress_heatup.bed_enabled", "Track bed heating") }}
-        {{ labelled_checkbox("effects.progress_heatup.tool_enabled", "Track tool heating") }}
+        {{ effects.labelled_checkbox("effects.progress_heatup.bed_enabled", "Track bed heating") }}
+        {{ effects.labelled_checkbox("effects.progress_heatup.tool_enabled", "Track tool heating") }}
         <label for="ws_progress_heatup_tool" class="checkbox inline" data-bind="visible: {{ binding.effect_binding("progress_heatup.tool_enabled") }}">
             Index of Tool to track:
         </label>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <hr>
-    {{ effect("progress_cooling", "Cooling Progress") }}
+    {{ effects.effect("progress_cooling", "Cooling Progress") }}
     <div class="form-inline" style="margin-top: 0.5rem;" data-bind="visible: {{ binding.effect_binding("progress_cooling.enabled") }}">
         <label for="ws_progress_cooling_bed_tool" class="inline">Track cooling on bed or tool:</label>
         <select id="ws_progress_cooling_bed_tool" class="input-large" data-bind="value: {{ binding.effect_binding("progress_cooling.bed_or_tool") }}">
