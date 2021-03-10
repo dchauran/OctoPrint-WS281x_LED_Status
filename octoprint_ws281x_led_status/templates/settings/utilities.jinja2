@@ -1,5 +1,7 @@
 {% import "macros/binding.jinja2" as binding %}
 {% from "macros/docs.jinja2" import help_icon %}
+{% import "macros/effects.jinja2" as effects with context %}
+
 <h5>Utilities {{ help_icon("utilities")  }}</h5>
 
 <h5>LED Strip test</h5>
@@ -17,8 +19,8 @@
     <input id="ws_test_color" type="color" class="input-small">
     <button class="btn" id="led-test-white" data-bind="click: function(){ sendTestCommand(document.querySelector('#ws_test_color').value) }"><i class="far-custom fa-custom-lightbulb"></i> Test Custom Color</button>
 </p>
-{{ effect("test", "Test status effects") }}
-{{ effect("test", "Test progress effects", true) }}
+{{ effects.effect("test_status", "Test status effects") }}
+{{ effects.effect("test_progress", "Test progress effects", true) }}
 
 <hr>
 <h5>OS Config Test</h5>
