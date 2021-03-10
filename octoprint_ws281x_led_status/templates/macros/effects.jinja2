@@ -1,3 +1,4 @@
+{% import "macros/binding.jinja2" as binding %}
 {% macro labelled_checkbox(setting, label) %}
 <label class="checkbox inline">
     <input type="checkbox" data-bind="checked: {{ binding.bind_setting(setting) }}">
