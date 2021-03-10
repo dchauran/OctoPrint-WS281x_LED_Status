@@ -1,41 +1,14 @@
 {% import "macros/docs.jinja2" as docs %}
 {% import "macros/binding.jinja2" as binding with context %}
 
-{% macro labelled_checkbox(setting, label) %}
-<label class="checkbox inline">
-    <input type="checkbox" data-bind="checked: {{ binding.bind_setting(setting) }}">
-    {{ label }}
-</label>
-{% endmacro %}
-
-{% macro effect_select(effect) %}
-<label for="ws_{{ effect }}_effect" class="inline">Effect </label>
-<select id="ws_{{ effect }}_effect" class="input-large" data-bind="value: {{ binding.effect_binding(effect + ".effect") }}">
-    {% for effect in plugin_ws281x_led_status_progress_names %}
-    <option value="{{ effect }}">{{ effect }}</option>
-    {% endfor %}
-</select>
-{% endmacro %}
-
-{% macro color_select(effect) %}
-<label for="ws_{{ effect }}_color" class="inline">Progress Color </label>
-<input id="ws_{{ effect }}_color" type="color" class="input-small" data-bind="value: {{ binding.effect_binding(effect + ".color") }}">
-<label for="ws_{{ effect }}_base" class="inline">Base color </label>
-<input id="ws_{{ effect }}_base" type="color" class="input-small" data-bind="value: {{ binding.effect_binding(effect + ".base") }}">
-{% endmacro %}
-
 
 <h5>Progress effects {{ docs.help_icon("configuration/progress-effects") }}</h5>
 <form class="form-horizontal">
     {{ labelled_checkbox("strip.reverse", "Reverse progress bar direction") }}
     <hr>
-    {{ labelled_checkbox("effects.progress_print.enabled", "Enable Printing Progress") }}
-    <div class="form-inline" data-bind="visible: {{ binding.effect_binding("progress_print.enabled") }}">
-        {{ effect_select("progress_print") }}
-        {{ color_select("progress_print") }}
-    </div>
+    {{ effect("progress_print") }}
     <hr>
-    {{ labelled_checkbox("effects.progress_heatup.enabled", "Enable Heating Progress") }}
+    {{ effect("progress_heatup","Heating Progress") }}
     <br>
     <div class="form-inline" style="margin-bottom: 10px;" data-bind="visible: {{ binding.effect_binding("progress_heatup.enabled") }}">
         {{ labelled_checkbox("effects.progress_heatup.bed_enabled", "Track bed heating") }}
@@ -48,16 +21,8 @@
             <input type="number" id="ws_progress_heatup_tool" class="input-mini" data-bind="value: {{ binding.effect_binding("progress_heatup.tool_key") }}, visible: {{ binding.effect_binding("progress_heatup.tool_enabled") }}">
         </div>
     </div>
-    <div class="form-inline" data-bind="visible: {{ binding.effect_binding("progress_heatup.enabled") }}">
-        {{ effect_select("progress_heatup") }}
-        {{ color_select("progress_heatup") }}
-    </div>
     <hr>
-    {{ labelled_checkbox("effects.progress_cooling.enabled", "Enable cooling progress effect") }}
-    <div class="form-inline" style="margin-top: 5px;" data-bind="visible: {{ binding.effect_binding("progress_cooling.enabled") }}">
-        {{ effect_select("progress_cooling") }}
-        {{ color_select("progress_cooling") }}
-    </div>
+    {{ effect("progress_cooling", "Cooling Progress") }}
     <div class="form-inline" style="margin-top: 0.5rem;" data-bind="visible: {{ binding.effect_binding("progress_cooling.enabled") }}">
         <label for="ws_progress_cooling_bed_tool" class="inline">Track cooling on bed or tool:</label>
         <select id="ws_progress_cooling_bed_tool" class="input-large" data-bind="value: {{ binding.effect_binding("progress_cooling.bed_or_tool") }}">

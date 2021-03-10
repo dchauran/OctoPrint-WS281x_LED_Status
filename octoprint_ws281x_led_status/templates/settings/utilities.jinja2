@@ -17,6 +17,9 @@
     <input id="ws_test_color" type="color" class="input-small">
     <button class="btn" id="led-test-white" data-bind="click: function(){ sendTestCommand(document.querySelector('#ws_test_color').value) }"><i class="far-custom fa-custom-lightbulb"></i> Test Custom Color</button>
 </p>
+{{ effect("test", "Test status effects") }}
+{{ effect("test", "Test progress effects", true) }}
+
 <hr>
 <h5>OS Config Test</h5>
 <p>Checks that the OS level configuration for SPI is correct, as per the initial setup wizard.</p>
